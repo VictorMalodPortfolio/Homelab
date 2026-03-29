@@ -25,4 +25,5 @@
 - `ci` Add Trivy IaC security scan ([324eb09](https://github.com/VictorMalodPortfolio/Homelab/commit/324eb09c357ef912159667b5a7c09ff3d1367437))
 - `ci` Fix trivy-action version to 0.29.0 ([86d230a](https://github.com/VictorMalodPortfolio/Homelab/commit/86d230a539f011539f119395d56666fdb79c2b09))
 - `ci` Fix trivy-action to v0.35.0 ([8e24d26](https://github.com/VictorMalodPortfolio/Homelab/commit/8e24d26074dc91e63020a1a8d27576d167a4736a))
+- `ci` Update codeql-action to v4 and opt into Node.js 24 ([0c023ee](https://github.com/VictorMalodPortfolio/Homelab/commit/0c023ee90b8e3bb1cf4e533f81fb36752d8c86b2))
 
