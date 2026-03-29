@@ -19,10 +19,10 @@ Step-by-step guide to provision the homelab from scratch.
 
 ## 1. Fill in secrets
 
-From inside the tooling container, edit the encrypted secrets file:
+From inside the tooling container (launched from the Homelab directory):
 
 ```bash
-sops terraform/secrets.sops.yaml
+sops workspace/terraform/secrets.sops.yaml
 ```
 
 Ensure the following keys are present:
@@ -53,18 +53,22 @@ From inside the tooling container (launched from the Homelab directory):
 
 ```bash
 cd workspace/terraform
-tofu init
+sops exec-env secrets.sops.yaml 'tofu init'
 sops exec-env secrets.sops.yaml 'tofu apply'
 ```
 
+> Both `tofu init` and `tofu apply` need the S3 backend credentials from sops.
+
 This provisions:
 - DNS records (`victor-malod.ovh` + wildcard → VPS IP)
-- k3s on the VPS (Traefik disabled, version pinned in `main.tf`)
+- k3s on the VPS (Traefik disabled)
 - ufw firewall (ports 22, 80, 443, 6443)
 
 ---
 
 ## 4. Fetch kubeconfig
+
+Find the VPS IP in the OVH console or via `tofu state show data.ovh_vps.main`.
 
 From PowerShell on the host:
 
@@ -74,7 +78,7 @@ ssh -i "$env:USERPROFILE\.ssh\homelab" ubuntu@<VPS_IP> "sudo cat /etc/rancher/k3
     | Set-Content -Force "$env:USERPROFILE\.kube\config"
 ```
 
-Verify:
+Verify inside the tooling container:
 
 ```bash
 kubectl get nodes
@@ -83,6 +87,8 @@ kubectl get nodes
 ---
 
 ## 5. Bootstrap ArgoCD
+
+Inside the tooling container:
 
 ```bash
 kubectl create namespace argocd
@@ -96,16 +102,17 @@ Wait until all 7 pods are `Running`.
 
 ## 6. Connect ArgoCD to the Homelab repo
 
-Generate a deploy key for the Homelab repo:
+Generate a deploy key **on the host** (not in the container — `~/.ssh` is mounted read-only):
 
-```bash
-ssh-keygen -t ed25519 -C "argocd-homelab" -f ~/.ssh/argocd-homelab -N ""
+```powershell
+ssh-keygen -t ed25519 -C "argocd-homelab" -f "$env:USERPROFILE\.ssh\argocd-homelab" -N '""'
+Get-Content "$env:USERPROFILE\.ssh\argocd-homelab.pub"
 ```
 
 Add the public key as a read-only deploy key in GitHub:
 **Homelab repo → Settings → Deploy keys → Add deploy key** (read-only).
 
-Register the repo in ArgoCD:
+Register the repo in ArgoCD (inside the tooling container — the key is visible via the `~/.ssh` mount):
 
 ```bash
 kubectl create secret generic homelab-repo \
@@ -113,35 +120,32 @@ kubectl create secret generic homelab-repo \
   --from-literal=type=git \
   --from-literal=url=git@github.com:VictorMalodPortfolio/Homelab.git \
   --from-file=sshPrivateKey=$HOME/.ssh/argocd-homelab
+
 kubectl label secret homelab-repo -n argocd \
   argocd.argoproj.io/secret-type=repository
 ```
 
 ---
 
-## 7. Deploy cert-manager
+## 7. Deploy everything via App of Apps
 
-Create `argocd/cert-manager.yaml` in this repo, then:
+Apply the root ArgoCD Application (this is the one manual step — after this, everything is GitOps):
 
 ```bash
-kubectl apply -f argocd/cert-manager.yaml
+kubectl apply -f workspace/bootstrap/root-app.yaml
 ```
 
-Wait for cert-manager pods to be ready before proceeding.
+Watch the child apps come up:
+
+```bash
+kubectl get applications -n argocd -w
+```
+
+ArgoCD will automatically deploy cert-manager and Traefik from the `argocd/` directory.
 
 ---
 
-## 8. Deploy Traefik
-
-Create `argocd/traefik.yaml` in this repo, then:
-
-```bash
-kubectl apply -f argocd/traefik.yaml
-```
-
----
-
-## 9. Next steps
+## 8. Next steps
 
 - Configure wildcard TLS with Let's Encrypt + OVH DNS challenge
 - Expose ArgoCD UI via Traefik ingress
@@ -155,7 +159,7 @@ k3s upgrades are in-place and preserve all running workloads.
 
 ```bash
 # SSH into the VPS
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.35.2+k3s1 INSTALL_K3S_EXEC='--disable traefik' sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=<target-version> INSTALL_K3S_EXEC='--disable traefik' sh -
 kubectl get nodes
 kubectl get pods -A
 ```
