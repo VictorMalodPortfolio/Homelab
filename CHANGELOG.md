@@ -28,4 +28,5 @@
 - `ci` Update codeql-action to v4 and opt into Node.js 24 ([0c023ee](https://github.com/VictorMalodPortfolio/Homelab/commit/0c023ee90b8e3bb1cf4e533f81fb36752d8c86b2))
 - `test` Add dummy insecure manifest to verify Trivy catches issues ([0542568](https://github.com/VictorMalodPortfolio/Homelab/commit/0542568d8bcc7cd15e2f021f977f7a541a3c26fb))
 - `ci` Upload SARIF before failing the build on Trivy findings ([a9e4a4f](https://github.com/VictorMalodPortfolio/Homelab/commit/a9e4a4ff384929c94fccc5a7226647d851d5cd00))
+- `test` Remove dummy insecure manifest ([f1662bc](https://github.com/VictorMalodPortfolio/Homelab/commit/f1662bc9c8ba67b0fc895a6da6e54f43eb9c58a3))
 
