@@ -13,38 +13,24 @@ graph TD
     dev["💻 Developer"]
 
     subgraph local["Local Machine"]
-        tooling["DockerTooling container\nkubectl · helm · tofu · sops"]
-        age["age key\n~/.config/sops/age/key.txt"]
-        kubeconfig["kubeconfig\n~/.kube/config"]
+        tooling["DockerTooling\nkubectl · helm · tofu · sops"]
     end
 
     subgraph github["GitHub"]
         homelab_repo["Homelab repo\n(this repo)"]
         docker_repo["DockerTooling repo"]
-        ghcr["GHCR\nghcr.io/victormalodportfolio/k8s-tooling"]
+        ghcr["GHCR\nk8s-tooling image"]
     end
 
     subgraph ovh["OVH"]
-        dns["DNS\nvictor-malod.ovh\n*.victor-malod.ovh"]
-        s3["Object Storage\nOpenTofu state backend"]
+        dns["DNS\n*.victor-malod.ovh"]
+        s3["Object Storage\nTofu state"]
 
-        subgraph vps["VPS · Ubuntu 24.04"]
-            k3s["k3s v1.35"]
-
-            subgraph argocd_ns["argocd"]
-                argocd["ArgoCD\n(App of Apps)"]
-            end
-
-            subgraph cert_manager_ns["cert-manager"]
-                cert_manager["cert-manager"]
-                webhook["aureq OVH webhook"]
-                ovh_secret["Secret: ovh-credentials"]
-            end
-
-            subgraph traefik_ns["traefik"]
-                traefik["Traefik\n(ingress)"]
-                tls_secret["Secret: wildcard TLS cert"]
-            end
+        subgraph vps["VPS · Ubuntu 24.04 · k3s"]
+            argocd["ArgoCD\n(App of Apps)"]
+            cert_manager["cert-manager\n+ OVH webhook"]
+            traefik["Traefik\n(ingress)"]
+            tls_secret["Wildcard TLS cert"]
         end
     end
 
@@ -54,20 +40,15 @@ graph TD
 
     dev -->|"push"| homelab_repo
     dev -->|"push"| docker_repo
-    docker_repo -->|"CI builds image"| ghcr
-    homelab_repo -->|"GitOps sync"| argocd
-    argocd -->|"deploys"| cert_manager
-    argocd -->|"deploys"| webhook
-    argocd -->|"deploys"| traefik
-
+    docker_repo -->|"CI builds"| ghcr
+    ghcr -->|"pulled by"| tooling
     tooling -->|"tofu apply"| vps
     tooling -->|"tofu apply"| dns
     tooling -->|"state"| s3
-    age -->|"decrypt secrets"| tooling
-    kubeconfig -->|"cluster access"| tooling
-
-    webhook -->|"reads"| ovh_secret
-    webhook -->|"creates TXT record"| dns
+    homelab_repo -->|"GitOps sync"| argocd
+    argocd -->|"deploys"| cert_manager
+    argocd -->|"deploys"| traefik
+    cert_manager -->|"DNS-01 via OVH API"| dns
     acme -->|"verifies TXT"| dns
     acme -->|"issues cert"| cert_manager
     cert_manager -->|"stores"| tls_secret
