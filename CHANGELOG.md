@@ -5,11 +5,13 @@
 - Authenticate to GHCR for private image pull ([9216d30](https://github.com/VictorMalodPortfolio/Homelab/commit/9216d30afb2ad73205a82b8ae8dda5a403150638))
 - Run container as root for GitHub Actions compatibility ([4331b08](https://github.com/VictorMalodPortfolio/Homelab/commit/4331b089a4225f1789d7f729855f2256c63e2dba))
 - Add cliff.toml and fix git safe directory ([5cc5a99](https://github.com/VictorMalodPortfolio/Homelab/commit/5cc5a994f18af713c6355f10403f8c456e01431b))
+- Bump actions/checkout to v4.2.2 for Node.js 24 support ([a53cfb4](https://github.com/VictorMalodPortfolio/Homelab/commit/a53cfb448deb88bd4dcd8208cc60d23238b700b5))
 
 ## Documentation
 
 - Add CHANGELOG and conventional commits hook ([6144e1b](https://github.com/VictorMalodPortfolio/Homelab/commit/6144e1b3f27b2be48b54e41aba134ffdfb7871be))
 - Add README and move git hooks setup out of BOOTSTRAP ([11267c6](https://github.com/VictorMalodPortfolio/Homelab/commit/11267c6d3721df52a5e7b3c3803c120bfb302314))
+- Update CHANGELOG ([c1598af](https://github.com/VictorMalodPortfolio/Homelab/commit/c1598af0e0c9717cf5249832a6875cc95d2734fb))
 
 ## Features
 
