@@ -1,5 +1,6 @@
 # Changelog
 - `docs` Simplify architecture diagram to reduce crossing lines ([c1bd5dc](https://github.com/VictorMalodPortfolio/Homelab/commit/c1bd5dcb35d7a2cccf68d2e8b7866748cc5d52a9))
+- `docs` Add age key and kubeconfig back to architecture diagram ([ce6f56a](https://github.com/VictorMalodPortfolio/Homelab/commit/ce6f56a07b3a9d0d06a3b427818c7207f51d7535))
 ## v1.0.0 — 2026-03-29
 - `docs` Add CHANGELOG and conventional commits hook ([6144e1b](https://github.com/VictorMalodPortfolio/Homelab/commit/6144e1b3f27b2be48b54e41aba134ffdfb7871be))
 - `feat` Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
