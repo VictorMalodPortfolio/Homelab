@@ -1,6 +1,10 @@
 # Homelab
 
-Personal Kubernetes homelab deployed on an OVH VPS. Provisioned with OpenTofu, managed with GitOps via ArgoCD.
+[![CI](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml)
+[![Security](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml/badge.svg?label=security)](https://github.com/VictorMalodPortfolio/Homelab/security/code-scanning)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+A personal lab where I experiment with cloud infrastructure in a dedicated environment I fully control through OVH — provisioned with OpenTofu, orchestrated with k3s, and managed end-to-end via GitOps.
 
 ## Architecture
 
