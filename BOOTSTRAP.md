@@ -129,8 +129,13 @@ kubectl label secret homelab-repo -n argocd \
 
 ## 7. Create OVH credentials secret
 
-The cert-manager webhook needs OVH API credentials to complete DNS-01 challenges.
-Create the secret from sops (inside the tooling container):
+Pre-create the cert-manager namespace so the secret can be created before ArgoCD deploys cert-manager:
+
+```bash
+kubectl create namespace cert-manager
+```
+
+Create the secret from sops:
 
 ```bash
 sops exec-env workspace/terraform/secrets.sops.yaml \
@@ -145,26 +150,14 @@ sops exec-env workspace/terraform/secrets.sops.yaml \
 
 ## 8. Deploy everything via App of Apps
 
-Apply the root ArgoCD Application (this is the one manual step — after this, everything is GitOps):
+Apply the root ArgoCD Application (one-time manual step — after this, everything is GitOps):
 
 ```bash
 kubectl apply -f workspace/bootstrap/root-app.yaml
-```
-
-Watch the child apps come up:
-
-```bash
 kubectl get applications -n argocd -w
 ```
 
-ArgoCD will automatically deploy cert-manager and Traefik from the `argocd/` directory.
-
----
-
-## 8. Next steps
-
-- Configure wildcard TLS with Let's Encrypt + OVH DNS challenge
-- Expose ArgoCD UI via Traefik ingress
+ArgoCD will automatically deploy cert-manager, Traefik, the OVH webhook, and request a wildcard TLS certificate for `*.victor-malod.ovh`.
 
 ---
 
