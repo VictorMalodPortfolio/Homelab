@@ -1,6 +1,8 @@
 [changelog]
 header = "# Changelog\n"
 body = """
+{% if version %}## {{ version }} — {{ timestamp | date(format="%Y-%m-%d") }}
+{% endif %}\
 {% for commit in commits %}\
 - `{{ commit.group }}` {{ commit.message | upper_first }} ([{{ commit.id | truncate(length=7, end="") }}](https://github.com/VictorMalodPortfolio/Homelab/commit/{{ commit.id }}))
 {% endfor %}
