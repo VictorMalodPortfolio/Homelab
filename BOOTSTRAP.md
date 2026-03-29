@@ -70,12 +70,10 @@ This provisions:
 
 Find the VPS IP in the OVH console or via `tofu state show data.ovh_vps.main`.
 
-From PowerShell on the host:
-
-```powershell
-ssh -i "$env:USERPROFILE\.ssh\homelab" ubuntu@<VPS_IP> "sudo cat /etc/rancher/k3s/k3s.yaml" `
-    | ForEach-Object { $_ -replace '127.0.0.1', '<VPS_IP>' } `
-    | Set-Content -Force "$env:USERPROFILE\.kube\config"
+```bash
+ssh -i ~/.ssh/homelab ubuntu@<VPS_IP> "sudo cat /etc/rancher/k3s/k3s.yaml" \
+    | sed 's/127.0.0.1/<VPS_IP>/g' \
+    > ~/.kube/config
 ```
 
 Verify inside the tooling container:
@@ -102,11 +100,11 @@ Wait until all 7 pods are `Running`.
 
 ## 6. Connect ArgoCD to the Homelab repo
 
-Generate a deploy key **on the host** (not in the container — `~/.ssh` is mounted read-only):
+Generate a deploy key on the host:
 
-```powershell
-ssh-keygen -t ed25519 -C "argocd-homelab" -f "$env:USERPROFILE\.ssh\argocd-homelab" -N '""'
-Get-Content "$env:USERPROFILE\.ssh\argocd-homelab.pub"
+```bash
+ssh-keygen -t ed25519 -C "argocd-homelab" -f ~/.ssh/argocd-homelab -N ""
+cat ~/.ssh/argocd-homelab.pub
 ```
 
 Add the public key as a read-only deploy key in GitHub:
@@ -158,6 +156,35 @@ kubectl get applications -n argocd -w
 ```
 
 ArgoCD will automatically deploy cert-manager, Traefik, the OVH webhook, and request a wildcard TLS certificate for `*.victor-malod.ovh`.
+
+Once `argocd-config` is synced, restart the ArgoCD server to pick up the insecure mode ConfigMap:
+
+```bash
+kubectl rollout restart deployment argocd-server -n argocd
+```
+
+ArgoCD is then available at `https://argocd.victor-malod.ovh`.
+
+---
+
+## 9. Save ArgoCD admin password
+
+Retrieve the initial admin password and save it to sops:
+
+```bash
+kubectl get secret argocd-initial-admin-secret -n argocd \
+  -o jsonpath='{.data.password}' | base64 -d
+```
+
+```bash
+sops workspace/terraform/secrets.sops.yaml
+```
+
+Add:
+
+```yaml
+argocd_admin_password: "..."
+```
 
 ---
 
