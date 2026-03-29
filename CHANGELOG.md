@@ -24,4 +24,5 @@
 - `docs` Convert BOOTSTRAP to bash and add ArgoCD restart + password steps ([f9cebdb](https://github.com/VictorMalodPortfolio/Homelab/commit/f9cebdbe54f13bb03b37beee66158137ead33b6e))
 - `ci` Add Trivy IaC security scan ([324eb09](https://github.com/VictorMalodPortfolio/Homelab/commit/324eb09c357ef912159667b5a7c09ff3d1367437))
 - `ci` Fix trivy-action version to 0.29.0 ([86d230a](https://github.com/VictorMalodPortfolio/Homelab/commit/86d230a539f011539f119395d56666fdb79c2b09))
+- `ci` Fix trivy-action to v0.35.0 ([8e24d26](https://github.com/VictorMalodPortfolio/Homelab/commit/8e24d26074dc91e63020a1a8d27576d167a4736a))
 
