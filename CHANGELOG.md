@@ -29,4 +29,5 @@
 - `test` Add dummy insecure manifest to verify Trivy catches issues ([0542568](https://github.com/VictorMalodPortfolio/Homelab/commit/0542568d8bcc7cd15e2f021f977f7a541a3c26fb))
 - `ci` Upload SARIF before failing the build on Trivy findings ([a9e4a4f](https://github.com/VictorMalodPortfolio/Homelab/commit/a9e4a4ff384929c94fccc5a7226647d851d5cd00))
 - `test` Remove dummy insecure manifest ([f1662bc](https://github.com/VictorMalodPortfolio/Homelab/commit/f1662bc9c8ba67b0fc895a6da6e54f43eb9c58a3))
+- `docs` Add badges and improve README description ([c188852](https://github.com/VictorMalodPortfolio/Homelab/commit/c188852b3355f9c6105111ac459ecf56dfde3cf6))
 
