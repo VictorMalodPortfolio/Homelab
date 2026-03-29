@@ -1,0 +1,4 @@
+Wildcard certificate for {{ .Values.domain }} requested.
+
+Secret: wildcard-{{ .Values.domain | replace "." "-" }}-tls (namespace: traefik)
+Issuer: letsencrypt-prod

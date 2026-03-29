@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-{{ .Values.domain | replace "." "-" }}
+  namespace: traefik
+spec:
+  secretName: wildcard-{{ .Values.domain | replace "." "-" }}-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - {{ .Values.domain }}
+    - "*.{{ .Values.domain }}"

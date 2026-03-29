@@ -1,0 +1,24 @@
+groupName: acme.victor-malod.ovh
+
+certManager:
+  namespace: cert-manager
+  serviceAccountName: cert-manager
+
+issuers:
+  - name: letsencrypt-prod
+    create: true
+    kind: ClusterIssuer
+    acmeServerUrl: https://acme-v02.api.letsencrypt.org/directory
+    email: victor.malod@outlook.fr
+    ovhEndpointName: ovh-eu
+    ovhAuthenticationMethod: application
+    ovhAuthenticationRef:
+      applicationKeyRef:
+        name: ovh-credentials
+        key: applicationKey
+      applicationSecretRef:
+        name: ovh-credentials
+        key: applicationSecret
+      applicationConsumerKeyRef:
+        name: ovh-credentials
+        key: applicationConsumerKey

@@ -127,7 +127,23 @@ kubectl label secret homelab-repo -n argocd \
 
 ---
 
-## 7. Deploy everything via App of Apps
+## 7. Create OVH credentials secret
+
+The cert-manager webhook needs OVH API credentials to complete DNS-01 challenges.
+Create the secret from sops (inside the tooling container):
+
+```bash
+sops exec-env workspace/terraform/secrets.sops.yaml \
+  'kubectl create secret generic ovh-credentials \
+    --namespace cert-manager \
+    --from-literal=applicationKey=$ovh_application_key \
+    --from-literal=applicationSecret=$ovh_application_secret \
+    --from-literal=applicationConsumerKey=$ovh_consumer_key'
+```
+
+---
+
+## 8. Deploy everything via App of Apps
 
 Apply the root ArgoCD Application (this is the one manual step — after this, everything is GitOps):
 

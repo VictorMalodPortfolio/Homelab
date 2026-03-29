@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cluster-issuers
+description: Let's Encrypt ClusterIssuer and wildcard certificate for victor-malod.ovh
+type: application
+version: 0.1.0
