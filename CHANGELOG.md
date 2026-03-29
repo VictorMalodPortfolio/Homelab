@@ -32,6 +32,8 @@
 - Update CHANGELOG ([4e58339](https://github.com/VictorMalodPortfolio/Homelab/commit/4e58339cb859b542db6c63f10ae784839d2d5530))
 - Update CHANGELOG ([6b30d14](https://github.com/VictorMalodPortfolio/Homelab/commit/6b30d1495d71846136523b66734f3ec05168fbb3))
 - Replace placeholder repo structure with Mermaid architecture diagram ([7d2f409](https://github.com/VictorMalodPortfolio/Homelab/commit/7d2f409f7d41c44736b4de7ed289d25131cccf4f))
+- Update CHANGELOG ([33a1547](https://github.com/VictorMalodPortfolio/Homelab/commit/33a15476d288ef0375390bc07ce6ee7f660af3b4))
+- Remove secret field names from architecture diagram ([53177ed](https://github.com/VictorMalodPortfolio/Homelab/commit/53177edf266c00bcc7a23c5f6961123d8940f1d2))
 
 ## Features
 
