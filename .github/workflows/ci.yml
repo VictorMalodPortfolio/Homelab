@@ -26,7 +26,7 @@ jobs:
 
       - name: Validate commit messages
         run: |
-          git log origin/main..HEAD --format="%s" | while read msg; do
+          git log origin/main..HEAD --no-merges --format="%s" | while read msg; do
             if ! echo "$msg" | grep -qE '^(feat|fix|docs|chore|refactor|test|ci|build)(\(.+\))?: .+'; then
               echo "Invalid commit message: $msg"
               echo "Expected format: <type>(optional scope): <description>"
