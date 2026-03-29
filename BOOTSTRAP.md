@@ -150,11 +150,12 @@ kubectl apply -f argocd/traefik.yaml
 
 ## Upgrading k3s
 
-k3s upgrades are in-place and preserve all running workloads:
+k3s upgrades are in-place and preserve all running workloads.
+**Always pass `INSTALL_K3S_EXEC='--disable traefik'`** — omitting it re-enables k3s's bundled Traefik on top of ours.
 
 ```bash
 # SSH into the VPS
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.35.2+k3s1 sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.35.2+k3s1 INSTALL_K3S_EXEC='--disable traefik' sh -
 kubectl get nodes
 kubectl get pods -A
 ```
