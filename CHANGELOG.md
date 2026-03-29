@@ -18,4 +18,5 @@
 - `docs` Replace placeholder repo structure with Mermaid architecture diagram ([7d2f409](https://github.com/VictorMalodPortfolio/Homelab/commit/7d2f409f7d41c44736b4de7ed289d25131cccf4f))
 - `docs` Remove secret field names from architecture diagram ([53177ed](https://github.com/VictorMalodPortfolio/Homelab/commit/53177edf266c00bcc7a23c5f6961123d8940f1d2))
 - `build` Switch CHANGELOG to flat chronological list, skip self-referential commits ([0c5ad2b](https://github.com/VictorMalodPortfolio/Homelab/commit/0c5ad2b4ec0d056b62f165a742e11b8ef752646f))
+- `build` Add version headers to CHANGELOG template ([ba142f8](https://github.com/VictorMalodPortfolio/Homelab/commit/ba142f8b78f398321b83c7990e8a054dcf242446))
 
