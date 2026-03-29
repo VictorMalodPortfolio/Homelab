@@ -34,12 +34,12 @@ graph TD
             subgraph cert_manager_ns["cert-manager"]
                 cert_manager["cert-manager"]
                 webhook["aureq OVH webhook"]
-                ovh_secret["Secret: ovh-credentials\napplicationKey\napplicationSecret\napplicationConsumerKey"]
+                ovh_secret["Secret: ovh-credentials"]
             end
 
             subgraph traefik_ns["traefik"]
                 traefik["Traefik\n(ingress)"]
-                tls_secret["Secret: wildcard TLS cert\n*.victor-malod.ovh"]
+                tls_secret["Secret: wildcard TLS cert"]
             end
         end
     end
