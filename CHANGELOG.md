@@ -24,9 +24,11 @@
 - Update CHANGELOG ([1914293](https://github.com/VictorMalodPortfolio/Homelab/commit/191429389688ce503fd8d9fded1454c48278ad48))
 - Update BOOTSTRAP with ArgoCD repo setup, k3s upgrade, and GitOps steps ([d7e2489](https://github.com/VictorMalodPortfolio/Homelab/commit/d7e2489543d95a03f94ee82f32d042dcece5e59a))
 - Update CHANGELOG ([f513b83](https://github.com/VictorMalodPortfolio/Homelab/commit/f513b8351be105206d99210f0c3b6c38bd1d477a))
+- Update CHANGELOG ([fecd860](https://github.com/VictorMalodPortfolio/Homelab/commit/fecd86006ba59372074fa2dd14e9c9b87c42c489))
 
 ## Features
 
 - Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
 - Add ArgoCD App of Apps for cert-manager and Traefik ([19ead69](https://github.com/VictorMalodPortfolio/Homelab/commit/19ead6909f352cb9176e5b239093c5c1fec90aea))
+- Add root ArgoCD Application bootstrap manifest ([badbb92](https://github.com/VictorMalodPortfolio/Homelab/commit/badbb925ac44b21671b0350fbfba6ac515b327f5))
 
