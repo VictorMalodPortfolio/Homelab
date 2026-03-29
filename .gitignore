@@ -1,0 +1,11 @@
+# Age private key — never commit
+key.txt
+
+# OpenTofu
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Local env overrides
+*.local.yaml
