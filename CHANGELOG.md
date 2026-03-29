@@ -30,6 +30,8 @@
 - Update CHANGELOG ([5404be6](https://github.com/VictorMalodPortfolio/Homelab/commit/5404be6f97d1bc8a6f0ba0cbea9066f4be0d3f30))
 - Fix multiple inaccuracies in BOOTSTRAP ([2061236](https://github.com/VictorMalodPortfolio/Homelab/commit/20612361c6101b7fa6b9793a75ceaba2902d6483))
 - Update CHANGELOG ([4e58339](https://github.com/VictorMalodPortfolio/Homelab/commit/4e58339cb859b542db6c63f10ae784839d2d5530))
+- Update CHANGELOG ([6b30d14](https://github.com/VictorMalodPortfolio/Homelab/commit/6b30d1495d71846136523b66734f3ec05168fbb3))
+- Replace placeholder repo structure with Mermaid architecture diagram ([7d2f409](https://github.com/VictorMalodPortfolio/Homelab/commit/7d2f409f7d41c44736b4de7ed289d25131cccf4f))
 
 ## Features
 
