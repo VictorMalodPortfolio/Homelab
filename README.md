@@ -14,6 +14,8 @@ graph TD
 
     subgraph local["Local Machine"]
         tooling["DockerTooling\nkubectl · helm · tofu · sops"]
+        age["age key"]
+        kubeconfig["kubeconfig"]
     end
 
     subgraph github["GitHub"]
@@ -42,6 +44,8 @@ graph TD
     dev -->|"push"| docker_repo
     docker_repo -->|"CI builds"| ghcr
     ghcr -->|"pulled by"| tooling
+    age -->|"decrypt secrets"| tooling
+    kubeconfig -->|"cluster access"| tooling
     tooling -->|"tofu apply"| vps
     tooling -->|"tofu apply"| dns
     tooling -->|"state"| s3
