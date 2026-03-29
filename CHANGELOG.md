@@ -1,12 +1,17 @@
 # Changelog
 
-## [Unreleased]
+## Bug Fixes
 
-## [1.0.0] - 2026-03-29
+- Authenticate to GHCR for private image pull ([9216d30](https://github.com/VictorMalodPortfolio/Homelab/commit/9216d30afb2ad73205a82b8ae8dda5a403150638))
+- Run container as root for GitHub Actions compatibility ([4331b08](https://github.com/VictorMalodPortfolio/Homelab/commit/4331b089a4225f1789d7f729855f2256c63e2dba))
+- Add cliff.toml and fix git safe directory ([5cc5a99](https://github.com/VictorMalodPortfolio/Homelab/commit/5cc5a994f18af713c6355f10403f8c456e01431b))
 
-### Added
-- OpenTofu provisioning for OVH VPS, DNS records, ufw firewall and k3s
-- SOPS-encrypted secrets with age key
-- Remote state backend on OVH Object Storage (GRA)
-- `.sops.yaml` encryption rules
-- `BOOTSTRAP.md` step-by-step provisioning guide
+## Documentation
+
+- Add CHANGELOG and conventional commits hook ([6144e1b](https://github.com/VictorMalodPortfolio/Homelab/commit/6144e1b3f27b2be48b54e41aba134ffdfb7871be))
+- Add README and move git hooks setup out of BOOTSTRAP ([11267c6](https://github.com/VictorMalodPortfolio/Homelab/commit/11267c6d3721df52a5e7b3c3803c120bfb302314))
+
+## Features
+
+- Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
+
