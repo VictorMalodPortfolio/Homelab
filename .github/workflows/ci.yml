@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  conventional-commits:
+    name: Validate commit messages
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    container:
+      image: ghcr.io/victormalodportfolio/k8s-tooling:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit messages
+        run: |
+          git log origin/main..HEAD --format="%s" | while read msg; do
+            if ! echo "$msg" | grep -qE '^(feat|fix|docs|chore|refactor|test|ci|build)(\(.+\))?: .+'; then
+              echo "Invalid commit message: $msg"
+              echo "Expected format: <type>(optional scope): <description>"
+              echo "Allowed types: feat, fix, docs, chore, refactor, test, ci, build"
+              exit 1
+            fi
+          done
+
+  changelog:
+    name: Update CHANGELOG
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    container:
+      image: ghcr.io/victormalodportfolio/k8s-tooling:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate CHANGELOG
+        run: git-cliff --output CHANGELOG.md
+
+      - name: Commit CHANGELOG
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update CHANGELOG"
+          git push
