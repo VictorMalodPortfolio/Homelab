@@ -31,4 +31,5 @@
 - `test` Remove dummy insecure manifest ([f1662bc](https://github.com/VictorMalodPortfolio/Homelab/commit/f1662bc9c8ba67b0fc895a6da6e54f43eb9c58a3))
 - `docs` Add badges and improve README description ([c188852](https://github.com/VictorMalodPortfolio/Homelab/commit/c188852b3355f9c6105111ac459ecf56dfde3cf6))
 - `docs` Fix duplicate CI badge, use static Trivy badge ([35a7669](https://github.com/VictorMalodPortfolio/Homelab/commit/35a766998ebca5003b7115939e2e77c3be8414b7))
+- `chore` Disable dependencyDashboardApproval to auto-open Renovate PRs ([a3a6e77](https://github.com/VictorMalodPortfolio/Homelab/commit/a3a6e7768851e55cc78abda21396d7ea6dca6d40))
 
