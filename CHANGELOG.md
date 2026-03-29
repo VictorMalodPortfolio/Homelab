@@ -20,4 +20,5 @@
 - `build` Switch CHANGELOG to flat chronological list, skip self-referential commits ([0c5ad2b](https://github.com/VictorMalodPortfolio/Homelab/commit/0c5ad2b4ec0d056b62f165a742e11b8ef752646f))
 - `build` Add version headers to CHANGELOG template ([ba142f8](https://github.com/VictorMalodPortfolio/Homelab/commit/ba142f8b78f398321b83c7990e8a054dcf242446))
 - `docs` Fix BOOTSTRAP ordering, duplicate heading, and outdated next steps ([fdff820](https://github.com/VictorMalodPortfolio/Homelab/commit/fdff820354adc0fa9f1b7fd38f2d66364955698a))
+- `feat` Expose ArgoCD UI via Traefik with wildcard TLS ([91b1188](https://github.com/VictorMalodPortfolio/Homelab/commit/91b1188f4e9137459a41d6da6812999b00f46b2a))
 
