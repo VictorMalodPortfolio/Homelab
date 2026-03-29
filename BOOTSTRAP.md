@@ -2,14 +2,6 @@
 
 Step-by-step guide to provision the homelab from scratch.
 
-## Git hooks
-
-Conventional commits are enforced locally via a `commit-msg` hook available in `.githooks/`. Run this once after cloning:
-
-```bash
-git config core.hooksPath .githooks
-```
-
 ## Prerequisites
 
 - OVH account with:
