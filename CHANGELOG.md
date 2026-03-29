@@ -30,4 +30,5 @@
 - `ci` Upload SARIF before failing the build on Trivy findings ([a9e4a4f](https://github.com/VictorMalodPortfolio/Homelab/commit/a9e4a4ff384929c94fccc5a7226647d851d5cd00))
 - `test` Remove dummy insecure manifest ([f1662bc](https://github.com/VictorMalodPortfolio/Homelab/commit/f1662bc9c8ba67b0fc895a6da6e54f43eb9c58a3))
 - `docs` Add badges and improve README description ([c188852](https://github.com/VictorMalodPortfolio/Homelab/commit/c188852b3355f9c6105111ac459ecf56dfde3cf6))
+- `docs` Fix duplicate CI badge, use static Trivy badge ([35a7669](https://github.com/VictorMalodPortfolio/Homelab/commit/35a766998ebca5003b7115939e2e77c3be8414b7))
 
