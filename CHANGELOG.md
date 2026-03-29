@@ -27,6 +27,8 @@
 - Update CHANGELOG ([fecd860](https://github.com/VictorMalodPortfolio/Homelab/commit/fecd86006ba59372074fa2dd14e9c9b87c42c489))
 - Update CHANGELOG ([3f14d6b](https://github.com/VictorMalodPortfolio/Homelab/commit/3f14d6be60994aaa33410cdd6efa68d64ac9f282))
 - Fix k3s upgrade command to preserve --disable traefik flag ([e11bb41](https://github.com/VictorMalodPortfolio/Homelab/commit/e11bb41758e931e7058dcc635d546a36dab08022))
+- Update CHANGELOG ([5404be6](https://github.com/VictorMalodPortfolio/Homelab/commit/5404be6f97d1bc8a6f0ba0cbea9066f4be0d3f30))
+- Fix multiple inaccuracies in BOOTSTRAP ([2061236](https://github.com/VictorMalodPortfolio/Homelab/commit/20612361c6101b7fa6b9793a75ceaba2902d6483))
 
 ## Features
 
