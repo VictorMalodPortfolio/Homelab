@@ -8,3 +8,8 @@ ports:
   websecure:
     port: 8443
     exposedPort: 443
+
+tlsStore:
+  default:
+    defaultCertificate:
+      secretName: wildcard-victor-malod-ovh-tls

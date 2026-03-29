@@ -1,0 +1,1 @@
+ArgoCD is available at https://{{ .Values.host }}

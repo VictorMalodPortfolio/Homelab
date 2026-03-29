@@ -1,0 +1,5 @@
+apiVersion: v2
+name: argocd-config
+description: ArgoCD insecure mode config and Traefik IngressRoute
+type: application
+version: 0.1.0
