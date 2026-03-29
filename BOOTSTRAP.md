@@ -13,7 +13,7 @@ Step-by-step guide to provision the homelab from scratch.
 - An SSH key pair at `~/.ssh/homelab` registered on the VPS
 - An age key at `~/.config/sops/age/key.txt`
 - Docker Desktop running
-- The DockerTooling image built: `docker compose build` (from `DockerTooling/`)
+- The DockerTooling image (pulled automatically from GHCR on first run)
 
 ---
 
@@ -59,7 +59,7 @@ sops exec-env secrets.sops.yaml 'tofu apply'
 
 This provisions:
 - DNS records (`victor-malod.ovh` + wildcard → VPS IP)
-- k3s on the VPS (Traefik disabled)
+- k3s on the VPS (Traefik disabled, version pinned in `main.tf`)
 - ufw firewall (ports 22, 80, 443, 6443)
 
 ---
@@ -90,10 +90,71 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl get pods -n argocd -w
 ```
 
+Wait until all 7 pods are `Running`.
+
 ---
 
-## 6. Next steps
+## 6. Connect ArgoCD to the Homelab repo
 
-- Deploy Traefik via ArgoCD
-- Deploy cert-manager via ArgoCD
+Generate a deploy key for the Homelab repo:
+
+```bash
+ssh-keygen -t ed25519 -C "argocd-homelab" -f ~/.ssh/argocd-homelab -N ""
+```
+
+Add the public key as a read-only deploy key in GitHub:
+**Homelab repo → Settings → Deploy keys → Add deploy key** (read-only).
+
+Register the repo in ArgoCD:
+
+```bash
+kubectl create secret generic homelab-repo \
+  --namespace argocd \
+  --from-literal=type=git \
+  --from-literal=url=git@github.com:VictorMalodPortfolio/Homelab.git \
+  --from-file=sshPrivateKey=$HOME/.ssh/argocd-homelab
+kubectl label secret homelab-repo -n argocd \
+  argocd.argoproj.io/secret-type=repository
+```
+
+---
+
+## 7. Deploy cert-manager
+
+Create `argocd/cert-manager.yaml` in this repo, then:
+
+```bash
+kubectl apply -f argocd/cert-manager.yaml
+```
+
+Wait for cert-manager pods to be ready before proceeding.
+
+---
+
+## 8. Deploy Traefik
+
+Create `argocd/traefik.yaml` in this repo, then:
+
+```bash
+kubectl apply -f argocd/traefik.yaml
+```
+
+---
+
+## 9. Next steps
+
 - Configure wildcard TLS with Let's Encrypt + OVH DNS challenge
+- Expose ArgoCD UI via Traefik ingress
+
+---
+
+## Upgrading k3s
+
+k3s upgrades are in-place and preserve all running workloads:
+
+```bash
+# SSH into the VPS
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.35.2+k3s1 sh -
+kubectl get nodes
+kubectl get pods -A
+```
