@@ -29,10 +29,12 @@
 - Fix k3s upgrade command to preserve --disable traefik flag ([e11bb41](https://github.com/VictorMalodPortfolio/Homelab/commit/e11bb41758e931e7058dcc635d546a36dab08022))
 - Update CHANGELOG ([5404be6](https://github.com/VictorMalodPortfolio/Homelab/commit/5404be6f97d1bc8a6f0ba0cbea9066f4be0d3f30))
 - Fix multiple inaccuracies in BOOTSTRAP ([2061236](https://github.com/VictorMalodPortfolio/Homelab/commit/20612361c6101b7fa6b9793a75ceaba2902d6483))
+- Update CHANGELOG ([4e58339](https://github.com/VictorMalodPortfolio/Homelab/commit/4e58339cb859b542db6c63f10ae784839d2d5530))
 
 ## Features
 
 - Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
 - Add ArgoCD App of Apps for cert-manager and Traefik ([19ead69](https://github.com/VictorMalodPortfolio/Homelab/commit/19ead6909f352cb9176e5b239093c5c1fec90aea))
 - Add root ArgoCD Application bootstrap manifest ([badbb92](https://github.com/VictorMalodPortfolio/Homelab/commit/badbb925ac44b21671b0350fbfba6ac515b327f5))
+- Restructure to multi-source ArgoCD apps with proper values files ([5eff3aa](https://github.com/VictorMalodPortfolio/Homelab/commit/5eff3aa7780ce1e74cb4aea0de9cbc0455cbc28e))
 
