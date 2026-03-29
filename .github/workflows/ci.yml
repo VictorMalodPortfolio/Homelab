@@ -15,6 +15,7 @@ jobs:
       packages: read
     container:
       image: ghcr.io/victormalodportfolio/k8s-tooling:latest
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
@@ -43,6 +44,7 @@ jobs:
       packages: read
     container:
       image: ghcr.io/victormalodportfolio/k8s-tooling:latest
+      options: --user root
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
