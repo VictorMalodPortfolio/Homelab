@@ -25,6 +25,8 @@
 - Update BOOTSTRAP with ArgoCD repo setup, k3s upgrade, and GitOps steps ([d7e2489](https://github.com/VictorMalodPortfolio/Homelab/commit/d7e2489543d95a03f94ee82f32d042dcece5e59a))
 - Update CHANGELOG ([f513b83](https://github.com/VictorMalodPortfolio/Homelab/commit/f513b8351be105206d99210f0c3b6c38bd1d477a))
 - Update CHANGELOG ([fecd860](https://github.com/VictorMalodPortfolio/Homelab/commit/fecd86006ba59372074fa2dd14e9c9b87c42c489))
+- Update CHANGELOG ([3f14d6b](https://github.com/VictorMalodPortfolio/Homelab/commit/3f14d6be60994aaa33410cdd6efa68d64ac9f282))
+- Fix k3s upgrade command to preserve --disable traefik flag ([e11bb41](https://github.com/VictorMalodPortfolio/Homelab/commit/e11bb41758e931e7058dcc635d546a36dab08022))
 
 ## Features
 
