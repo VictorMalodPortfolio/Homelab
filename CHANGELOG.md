@@ -21,4 +21,5 @@
 - `build` Add version headers to CHANGELOG template ([ba142f8](https://github.com/VictorMalodPortfolio/Homelab/commit/ba142f8b78f398321b83c7990e8a054dcf242446))
 - `docs` Fix BOOTSTRAP ordering, duplicate heading, and outdated next steps ([fdff820](https://github.com/VictorMalodPortfolio/Homelab/commit/fdff820354adc0fa9f1b7fd38f2d66364955698a))
 - `feat` Expose ArgoCD UI via Traefik with wildcard TLS ([91b1188](https://github.com/VictorMalodPortfolio/Homelab/commit/91b1188f4e9137459a41d6da6812999b00f46b2a))
+- `docs` Convert BOOTSTRAP to bash and add ArgoCD restart + password steps ([f9cebdb](https://github.com/VictorMalodPortfolio/Homelab/commit/f9cebdbe54f13bb03b37beee66158137ead33b6e))
 
