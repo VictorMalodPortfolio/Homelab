@@ -21,6 +21,8 @@
 - Update CHANGELOG ([2a220dd](https://github.com/VictorMalodPortfolio/Homelab/commit/2a220ddbda40cae2fe8945344fb377678ba244e6))
 - Update CHANGELOG ([a3307a6](https://github.com/VictorMalodPortfolio/Homelab/commit/a3307a6e221995423db395dfb6a96363ebfc0837))
 - Update CHANGELOG ([e123c2f](https://github.com/VictorMalodPortfolio/Homelab/commit/e123c2f729c2e9b2e67e8772fb088dbf5cfd8f36))
+- Update CHANGELOG ([1914293](https://github.com/VictorMalodPortfolio/Homelab/commit/191429389688ce503fd8d9fded1454c48278ad48))
+- Update BOOTSTRAP with ArgoCD repo setup, k3s upgrade, and GitOps steps ([d7e2489](https://github.com/VictorMalodPortfolio/Homelab/commit/d7e2489543d95a03f94ee82f32d042dcece5e59a))
 
 ## Features
 
