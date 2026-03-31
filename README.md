@@ -42,9 +42,8 @@ graph TD
 
     dev -->|"push"| homelab_repo
     dev -->|"push"| docker_repo
-    docker_repo -->|"CI builds & pushes"| ghcr
-    docker_repo -->|"local build"| tooling
-    ghcr -->|"used by CI"| homelab_repo
+    docker_repo -->|"CI builds"| ghcr
+    ghcr -->|"pulled by"| tooling
     age -->|"decrypt secrets"| tooling
     kubeconfig -->|"cluster access"| tooling
     tooling -->|"tofu apply"| vps
