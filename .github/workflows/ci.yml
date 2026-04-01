@@ -5,6 +5,8 @@ on:
     branches: [main]
   push:
     branches: [main]
+    paths-ignore:
+      - 'CHANGELOG.md'
 
 jobs:
   conventional-commits:
@@ -72,9 +74,11 @@ jobs:
   changelog:
     name: Update CHANGELOG
     runs-on: ubuntu-latest
+    needs: trivy
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: Protected
     permissions:
-      contents: write
+      contents: read
       packages: read
     container:
       image: ghcr.io/victormalodportfolio/k8s-tooling:latest
@@ -83,9 +87,17 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Generate app token
+        uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ vars.LAB_BOT_ID }}
+          private-key: ${{ secrets.LAB_BOT_PRIVATE_KEY }}
+
       - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Fix git ownership
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -93,10 +105,11 @@ jobs:
       - name: Generate CHANGELOG
         run: git-cliff --output CHANGELOG.md
 
-      - name: Commit CHANGELOG
+      - name: Commit and push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet CHANGELOG.md && echo "No changes, skipping." && exit 0
+          git config user.name "Homelab Portfolio Bot[bot]"
+          git config user.email "homelab-portfolio-bot[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git diff --cached --quiet || git commit -m "docs: update CHANGELOG"
+          git commit -m "docs: update CHANGELOG"
           git push
