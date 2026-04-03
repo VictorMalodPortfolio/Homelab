@@ -1,8 +1,14 @@
 # Homelab
 
-[![CI](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml)
-[![Security](https://img.shields.io/badge/security-trivy-blue)](https://github.com/VictorMalodPortfolio/Homelab/security/code-scanning)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/VictorMalodPortfolio/Homelab/ci.yml?branch=main&label=CI&style=for-the-badge)](https://github.com/VictorMalodPortfolio/Homelab/actions/workflows/ci.yml)
+[![Platform](https://img.shields.io/badge/k3s-OVH%20VPS-FFC61C?logo=k3s&logoColor=black&style=for-the-badge)](https://k3s.io)
+[![GitOps](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?logo=argo&logoColor=white&style=for-the-badge)](https://argo-cd.readthedocs.io)
+[![IaC](https://img.shields.io/badge/IaC-OpenTofu-623CE4?logo=opentofu&logoColor=white&style=for-the-badge)](https://opentofu.org)
+[![TLS](https://img.shields.io/badge/TLS-Let's%20Encrypt-003A70?logo=letsencrypt&logoColor=white&style=for-the-badge)](https://letsencrypt.org)
+[![Trivy](https://img.shields.io/badge/Trivy-IaC%20scan-1904DA?logo=aquasecurity&logoColor=white&style=for-the-badge)](https://github.com/VictorMalodPortfolio/Homelab/security/code-scanning)
+[![Renovate](https://img.shields.io/badge/Renovate-enabled-1A1F6C?logo=renovatebot&logoColor=white&style=for-the-badge)](https://github.com/renovatebot/renovate)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 A personal lab where I experiment with cloud infrastructure in a dedicated environment I fully control through OVH — provisioned with OpenTofu, orchestrated with k3s, and managed end-to-end via GitOps.
 
