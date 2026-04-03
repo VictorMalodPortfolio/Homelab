@@ -6,6 +6,7 @@
 - `docs` Add plain-language explanations to DevOps review ([7e74710](https://github.com/VictorMalodPortfolio/Homelab/commit/7e74710acaa63f511aa76f7227081c796aebad14))
 - `fix` Correct architecture diagram — tooling builds locally, GHCR used by CI ([cc812df](https://github.com/VictorMalodPortfolio/Homelab/commit/cc812df49536c65c721c3f5e8644b7e3cd45504c))
 - `docs` Fix mermaid — tooling is built locally, not pulled from GHCR ([3727fdd](https://github.com/VictorMalodPortfolio/Homelab/commit/3727fdde243bf1c8b239d31fbfc3058d6d05b20b))
+- `docs` Add shields.io badges to README ([223471a](https://github.com/VictorMalodPortfolio/Homelab/commit/223471aef99d538de984825ceb1ee9440841151e))
 ## v1.0.0 — 2026-03-29
 - `docs` Add CHANGELOG and conventional commits hook ([6144e1b](https://github.com/VictorMalodPortfolio/Homelab/commit/6144e1b3f27b2be48b54e41aba134ffdfb7871be))
 - `feat` Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
