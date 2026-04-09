@@ -1,0 +1,4 @@
+# Default values — overridden by secrets.sops.yaml (SOPS-encrypted)
+applicationKey: ""
+applicationSecret: ""
+applicationConsumerKey: ""

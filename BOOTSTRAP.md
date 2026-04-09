@@ -96,6 +96,27 @@ kubectl get pods -n argocd -w
 
 Wait until all 7 pods are `Running`.
 
+### 5a. Enable helm-secrets on the repo-server
+
+Create the age key secret (used by helm-secrets to decrypt SOPS-encrypted values):
+
+```bash
+kubectl create secret generic helm-secrets-private-keys \
+  --namespace argocd \
+  --from-file=key.txt=$HOME/.config/sops/age/key.txt
+```
+
+Patch the repo-server to use the custom image and mount the age key:
+
+```bash
+kubectl patch deployment argocd-repo-server -n argocd \
+  --type strategic \
+  --patch-file workspace/bootstrap/helm-secrets-patch.yaml
+kubectl rollout status deployment argocd-repo-server -n argocd
+```
+
+> The custom image (`ghcr.io/victormalodportfolio/argocd-repo-server`) is built by CI from `docker/argocd-repo-server/Dockerfile` and includes helm-secrets, sops, and age.
+
 ---
 
 ## 6. Connect ArgoCD to the Homelab repo
@@ -125,24 +146,19 @@ kubectl label secret homelab-repo -n argocd \
 
 ---
 
-## 7. Create OVH credentials secret
+## 7. Encrypt OVH credentials for GitOps
 
-Pre-create the cert-manager namespace so the secret can be created before ArgoCD deploys cert-manager:
-
-```bash
-kubectl create namespace cert-manager
-```
-
-Create the secret from sops:
+The OVH credentials are managed declaratively via helm-secrets. Create the encrypted values file (if it doesn't already exist):
 
 ```bash
-sops exec-env workspace/terraform/secrets.sops.yaml \
-  'kubectl create secret generic ovh-credentials \
-    --namespace cert-manager \
-    --from-literal=applicationKey=$ovh_application_key \
-    --from-literal=applicationSecret=$ovh_application_secret \
-    --from-literal=applicationConsumerKey=$ovh_consumer_key'
+cd workspace/helm/ovh-credentials
+cp secrets.example.yaml secrets.sops.yaml
+sops secrets.sops.yaml
 ```
+
+Fill in the real OVH credentials, save, and exit. SOPS encrypts the file automatically using the age key from `.sops.yaml`.
+
+> The encrypted `secrets.sops.yaml` must be committed to Git. ArgoCD decrypts it at sync time using the age key deployed in step 5a.
 
 ---
 
@@ -155,7 +171,7 @@ kubectl apply -f workspace/bootstrap/root-app.yaml
 kubectl get applications -n argocd -w
 ```
 
-ArgoCD will automatically deploy cert-manager, Traefik, the OVH webhook, and request a wildcard TLS certificate for `*.victor-malod.ovh`.
+ArgoCD will automatically deploy cert-manager, Traefik, the OVH webhook, decrypt and create the OVH credentials secret, and request a wildcard TLS certificate for `*.victor-malod.ovh`.
 
 Once `argocd-config` is synced, restart the ArgoCD server to pick up the insecure mode ConfigMap:
 
