@@ -31,4 +31,12 @@ USER argocd
 
 ENV HELM_PLUGINS="/home/argocd/.local/share/helm/plugins"
 
+# helm-secrets — no checksum published for the plugin tarball.
+# Download integrity relies on TLS only.
 RUN helm plugin install "https://github.com/jkroepke/helm-secrets" --version "${HELM_SECRETS_VERSION}"
+
+# Wrapper script — found before /usr/local/bin/helm on PATH,
+# intercepts helm calls to decrypt secrets:// value files
+ENV PATH="/home/argocd/.local/bin:${PATH}"
+RUN mkdir -p /home/argocd/.local/bin \
+    && ln -sf "${HELM_PLUGINS}/helm-secrets/scripts/wrapper/helm.sh" /home/argocd/.local/bin/helm
