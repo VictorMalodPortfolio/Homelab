@@ -1,0 +1,5 @@
+apiVersion: v2
+name: ovh-credentials
+description: OVH API credentials for cert-manager DNS-01 challenges (SOPS-encrypted)
+type: application
+version: 0.1.0

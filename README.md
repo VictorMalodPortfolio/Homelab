@@ -36,6 +36,7 @@ graph TD
 
         subgraph vps["VPS · Ubuntu 24.04 · k3s"]
             argocd["ArgoCD\n(App of Apps)"]
+            helm_secrets["helm-secrets\n+ SOPS + age"]
             cert_manager["cert-manager\n+ OVH webhook"]
             traefik["Traefik\n(ingress)"]
             tls_secret["Wildcard TLS cert"]
@@ -55,6 +56,7 @@ graph TD
     tooling -->|"tofu apply"| dns
     tooling -->|"state"| s3
     homelab_repo -->|"GitOps sync"| argocd
+    argocd -->|"decrypts secrets"| helm_secrets
     argocd -->|"deploys"| cert_manager
     argocd -->|"deploys"| traefik
     cert_manager -->|"DNS-01 via OVH API"| dns
@@ -68,15 +70,19 @@ graph TD
 
 ```
 Homelab/
-├── terraform/        # OpenTofu — OVH VPS, DNS, k3s provisioning
-├── argocd/           # ArgoCD Application manifests (App of Apps)
-├── helm/             # Helm values files per app
+├── docker/               # Custom Docker images
+│   └── argocd-repo-server/  # ArgoCD repo-server with helm-secrets, sops, age
+├── terraform/            # OpenTofu — OVH VPS, DNS, k3s provisioning
+├── argocd/               # ArgoCD Application manifests (App of Apps)
+├── helm/                 # Helm charts and values per app
+│   ├── argocd-config/    # ArgoCD server config (insecure mode, helm-secrets, IngressRoute)
 │   ├── cert-manager/
 │   ├── cert-manager-webhook-ovh/
 │   ├── cluster-issuers/
+│   ├── ovh-credentials/  # OVH API secret (SOPS-encrypted values)
 │   └── traefik/
-├── bootstrap/        # One-time bootstrap manifests (root ArgoCD app)
-└── BOOTSTRAP.md      # Step-by-step provisioning guide
+├── bootstrap/            # One-time bootstrap manifests and patches
+└── BOOTSTRAP.md          # Step-by-step provisioning guide
 ```
 
 ## Getting started

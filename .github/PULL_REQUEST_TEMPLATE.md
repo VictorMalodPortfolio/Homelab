@@ -13,4 +13,8 @@
 ## Checklist
 
 - [ ] Commit messages follow the conventional commits format
-- [ ] The Trivy IaC scan passes (or findings are reviewed and accepted)
+- [ ] The Trivy scans pass (or new CVEs are added to `.trivyignore.yaml` with a justification)
+
+### If `.trivyignore.yaml` was touched
+
+- [ ] Checked that all existing entries are still needed — run the Trivy scan without the ignore file and remove any CVE that no longer appears in the results
