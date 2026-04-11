@@ -27,7 +27,10 @@ RUN curl -fsSL "https://github.com/FiloSottile/age/releases/download/v${AGE_VERS
     && chmod 0755 /usr/local/bin/age \
     && rm /tmp/age.tar.gz
 
-USER argocd
+# UID 999 = argocd user in the base image
+# Numeric form required by runAsNonRoot security context
+# https://github.com/argoproj/argo-cd/blob/v3.3.6/Dockerfile#L43
+USER 999
 
 ENV HELM_PLUGINS="/home/argocd/.local/share/helm/plugins"
 
