@@ -1,13 +1,4 @@
 # Changelog
-- `docs` Simplify architecture diagram to reduce crossing lines ([c1bd5dc](https://github.com/VictorMalodPortfolio/Homelab/commit/c1bd5dcb35d7a2cccf68d2e8b7866748cc5d52a9))
-- `docs` Add age key and kubeconfig back to architecture diagram ([ce6f56a](https://github.com/VictorMalodPortfolio/Homelab/commit/ce6f56a07b3a9d0d06a3b427818c7207f51d7535))
-- `ci` Migrate changelog to app bot, add Protected env, CODEOWNERS, PR template ([0ac0491](https://github.com/VictorMalodPortfolio/Homelab/commit/0ac0491cd628d36277f6705bed98569f069ae05b))
-- `docs` Add DevOps review for DockerTooling and Homelab ([57ba68a](https://github.com/VictorMalodPortfolio/Homelab/commit/57ba68a6c35b64401a030b52b0af06740957dd66))
-- `docs` Add plain-language explanations to DevOps review ([7e74710](https://github.com/VictorMalodPortfolio/Homelab/commit/7e74710acaa63f511aa76f7227081c796aebad14))
-- `fix` Correct architecture diagram — tooling builds locally, GHCR used by CI ([cc812df](https://github.com/VictorMalodPortfolio/Homelab/commit/cc812df49536c65c721c3f5e8644b7e3cd45504c))
-- `docs` Fix mermaid — tooling is built locally, not pulled from GHCR ([3727fdd](https://github.com/VictorMalodPortfolio/Homelab/commit/3727fdde243bf1c8b239d31fbfc3058d6d05b20b))
-- `docs` Add shields.io badges to README ([223471a](https://github.com/VictorMalodPortfolio/Homelab/commit/223471aef99d538de984825ceb1ee9440841151e))
-## v1.0.0 — 2026-03-29
 - `docs` Add CHANGELOG and conventional commits hook ([6144e1b](https://github.com/VictorMalodPortfolio/Homelab/commit/6144e1b3f27b2be48b54e41aba134ffdfb7871be))
 - `feat` Add GitHub Actions workflow ([e57b5ce](https://github.com/VictorMalodPortfolio/Homelab/commit/e57b5cee67bed3affd6a751b946f4d470f0bd199))
 - `docs` Add README and move git hooks setup out of BOOTSTRAP ([11267c6](https://github.com/VictorMalodPortfolio/Homelab/commit/11267c6d3721df52a5e7b3c3803c120bfb302314))
@@ -41,4 +32,14 @@
 - `docs` Add badges and improve README description ([c188852](https://github.com/VictorMalodPortfolio/Homelab/commit/c188852b3355f9c6105111ac459ecf56dfde3cf6))
 - `docs` Fix duplicate CI badge, use static Trivy badge ([35a7669](https://github.com/VictorMalodPortfolio/Homelab/commit/35a766998ebca5003b7115939e2e77c3be8414b7))
 - `chore` Disable dependencyDashboardApproval to auto-open Renovate PRs ([a3a6e77](https://github.com/VictorMalodPortfolio/Homelab/commit/a3a6e7768851e55cc78abda21396d7ea6dca6d40))
+- `docs` Simplify architecture diagram to reduce crossing lines ([c1bd5dc](https://github.com/VictorMalodPortfolio/Homelab/commit/c1bd5dcb35d7a2cccf68d2e8b7866748cc5d52a9))
+- `docs` Add age key and kubeconfig back to architecture diagram ([ce6f56a](https://github.com/VictorMalodPortfolio/Homelab/commit/ce6f56a07b3a9d0d06a3b427818c7207f51d7535))
+- `ci` Migrate changelog to app bot, add Protected env, CODEOWNERS, PR template ([0ac0491](https://github.com/VictorMalodPortfolio/Homelab/commit/0ac0491cd628d36277f6705bed98569f069ae05b))
+- `docs` Add DevOps review for DockerTooling and Homelab ([57ba68a](https://github.com/VictorMalodPortfolio/Homelab/commit/57ba68a6c35b64401a030b52b0af06740957dd66))
+- `docs` Add plain-language explanations to DevOps review ([7e74710](https://github.com/VictorMalodPortfolio/Homelab/commit/7e74710acaa63f511aa76f7227081c796aebad14))
+- `fix` Correct architecture diagram — tooling builds locally, GHCR used by CI ([cc812df](https://github.com/VictorMalodPortfolio/Homelab/commit/cc812df49536c65c721c3f5e8644b7e3cd45504c))
+- `docs` Fix mermaid — tooling is built locally, not pulled from GHCR ([3727fdd](https://github.com/VictorMalodPortfolio/Homelab/commit/3727fdde243bf1c8b239d31fbfc3058d6d05b20b))
+- `docs` Add shields.io badges to README ([223471a](https://github.com/VictorMalodPortfolio/Homelab/commit/223471aef99d538de984825ceb1ee9440841151e))
+- `feat` Add helm-secrets for declarative SOPS secret management ([9c566e0](https://github.com/VictorMalodPortfolio/Homelab/commit/9c566e05d8ece7f6faf483bd314b7da507b0dca9))
+- `feat` Add SOPS-encrypted OVH credentials, remove example file ([e89a0c9](https://github.com/VictorMalodPortfolio/Homelab/commit/e89a0c9cbe7ca00f7c34af5a2dada335b5c5b9d1))
 
