@@ -42,4 +42,7 @@
 - `docs` Add shields.io badges to README ([223471a](https://github.com/VictorMalodPortfolio/Homelab/commit/223471aef99d538de984825ceb1ee9440841151e))
 - `feat` Add helm-secrets for declarative SOPS secret management ([9c566e0](https://github.com/VictorMalodPortfolio/Homelab/commit/9c566e05d8ece7f6faf483bd314b7da507b0dca9))
 - `feat` Add SOPS-encrypted OVH credentials, remove example file ([e89a0c9](https://github.com/VictorMalodPortfolio/Homelab/commit/e89a0c9cbe7ca00f7c34af5a2dada335b5c5b9d1))
+- `fix` Prevent argocd-cm from being pruned during sync ([dd08c18](https://github.com/VictorMalodPortfolio/Homelab/commit/dd08c1861cf5b726dd3ce6c9570e41f07091e785))
+- `fix` Add required label to argocd-cm ConfigMap ([2a3fe34](https://github.com/VictorMalodPortfolio/Homelab/commit/2a3fe34beaed99b8232d50f9dac0223378ba9667))
+- `fix` Use numeric UID for argocd user in Dockerfile ([91db137](https://github.com/VictorMalodPortfolio/Homelab/commit/91db137c50f45ddf8eba94bbe5e150925f1fc9e5))
 
