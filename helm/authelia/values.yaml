@@ -1,0 +1,69 @@
+pod:
+  kind: Deployment
+  replicas: 1
+  extraVolumes:
+    - name: users-database
+      secret:
+        secretName: authelia-users
+        items:
+          - key: users_database.yml
+            path: users_database.yml
+  extraVolumeMounts:
+    - name: users-database
+      mountPath: /config/users_database.yml
+      subPath: users_database.yml
+      readOnly: true
+
+persistence:
+  store:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: local-path
+    mountPath: /data
+
+ingress:
+  traefikCRD:
+    enabled: true
+    entryPoints:
+      - websecure
+    tls: {}
+
+configMap:
+  theme: grey
+  default_2fa_method: totp
+
+  totp:
+    disable: false
+    issuer: Homelab
+
+  authentication_backend:
+    file:
+      enabled: true
+      path: /config/users_database.yml
+
+  access_control:
+    default_policy: two_factor
+    rules:
+      - domain: auth.victor-malod.ovh
+        policy: bypass
+
+  session:
+    name: authelia_session
+    cookies:
+      - subdomain: auth
+        domain: victor-malod.ovh
+
+  storage:
+    local:
+      enabled: true
+      path: /data/db.sqlite3
+
+  notifier:
+    filesystem:
+      enabled: true
+      filename: /data/notification.txt
+
+  identity_providers:
+    # defined in secrets.sops.yaml
