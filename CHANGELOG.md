@@ -51,4 +51,5 @@
 - `feat` Configure ArgoCD OIDC authentication with Authelia ([b5e7ec0](https://github.com/VictorMalodPortfolio/Homelab/commit/b5e7ec07e5132129a9fe209bbcb177890fce1070))
 - `chore` Ignore KSV-0109 false positive for argocd-cm OIDC reference ([25fbe68](https://github.com/VictorMalodPortfolio/Homelab/commit/25fbe68a57510ede2671a580247cac1ef39d1c81))
 - `docs` Update README with Authelia MFA architecture ([0d20a96](https://github.com/VictorMalodPortfolio/Homelab/commit/0d20a96a2596deed8269d43c9c7536136228f474))
+- `feat` Add CoreDNS rewrite, fix Authelia OIDC config, disable ArgoCD admin ([4423fef](https://github.com/VictorMalodPortfolio/Homelab/commit/4423fefbc6f33115455261109d5fe888968509dc))
 
