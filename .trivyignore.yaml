@@ -58,3 +58,13 @@ vulnerabilities:
   # Found in: ArgoCD base image
   - id: CVE-2026-25679
     statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
+
+  # Go stdlib: TLS chain building DoS
+  # Found in: ArgoCD base image (multiple binaries)
+  - id: CVE-2026-32280
+    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
+
+  # Go stdlib: Root.Chmod can follow symlinks out of the root
+  # Found in: ArgoCD base image (multiple binaries)
+  - id: CVE-2026-32282
+    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
