@@ -47,4 +47,5 @@
 - `fix` Use numeric UID for argocd user in Dockerfile ([91db137](https://github.com/VictorMalodPortfolio/Homelab/commit/91db137c50f45ddf8eba94bbe5e150925f1fc9e5))
 - `feat` Add Authelia MFA with OIDC for ArgoCD ([c56d1a3](https://github.com/VictorMalodPortfolio/Homelab/commit/c56d1a39517726c8b8f1bcbd87cf99213c94cfc8))
 - `chore` Ignore CVE-2026-32280 and CVE-2026-32282 in Trivy ([1ee45ad](https://github.com/VictorMalodPortfolio/Homelab/commit/1ee45ad145151c76f5045eb6c7e752ebdd2528be))
+- `fix` Correct Authelia chart configuration ([f560460](https://github.com/VictorMalodPortfolio/Homelab/commit/f5604603ff332ad63bf8e441134719bcef5feff6))
 
