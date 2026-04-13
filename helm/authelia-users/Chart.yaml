@@ -1,0 +1,5 @@
+apiVersion: v2
+name: authelia-users
+description: Authelia users database (SOPS-encrypted)
+type: application
+version: 0.1.0

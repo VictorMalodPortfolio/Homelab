@@ -13,3 +13,7 @@ tlsStore:
   default:
     defaultCertificate:
       secretName: wildcard-victor-malod-ovh-tls
+
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true # needed for future apps that will use ForwardAuth middleware from the authelia namespace.

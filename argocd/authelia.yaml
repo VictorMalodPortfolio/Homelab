@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: authelia
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.authelia.com
+      chart: authelia
+      targetRevision: 0.10.57 # app version 4.39.19
+      helm:
+        valueFiles:
+          - $values/helm/authelia/values.yaml
+          - $values/helm/authelia/secrets.sops.yaml # Note: no secrets:// prefix on the sops file - the helm-secrets wrapper auto-decrypts it.
+    - repoURL: git@github.com:VictorMalodPortfolio/Homelab.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: authelia
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
