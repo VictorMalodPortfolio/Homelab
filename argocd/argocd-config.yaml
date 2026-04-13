@@ -9,6 +9,9 @@ spec:
     repoURL: git@github.com:VictorMalodPortfolio/Homelab.git
     targetRevision: main
     path: helm/argocd-config
+    helm:
+      valueFiles:
+        - secrets://secrets.sops.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
