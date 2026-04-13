@@ -5,6 +5,7 @@
 [![GitOps](https://img.shields.io/badge/GitOps-ArgoCD-EF7B4D?logo=argo&logoColor=white&style=for-the-badge)](https://argo-cd.readthedocs.io)
 [![IaC](https://img.shields.io/badge/IaC-OpenTofu-623CE4?logo=opentofu&logoColor=white&style=for-the-badge)](https://opentofu.org)
 [![TLS](https://img.shields.io/badge/TLS-Let's%20Encrypt-003A70?logo=letsencrypt&logoColor=white&style=for-the-badge)](https://letsencrypt.org)
+[![Auth](https://img.shields.io/badge/Auth-Authelia%20MFA-1A1F6C?logo=authelia&logoColor=white&style=for-the-badge)](https://www.authelia.com)
 [![Trivy](https://img.shields.io/badge/Trivy-IaC%20scan-1904DA?logo=aquasecurity&logoColor=white&style=for-the-badge)](https://github.com/VictorMalodPortfolio/Homelab/security/code-scanning)
 [![Renovate](https://img.shields.io/badge/Renovate-enabled-1A1F6C?logo=renovatebot&logoColor=white&style=for-the-badge)](https://github.com/renovatebot/renovate)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
@@ -40,6 +41,7 @@ graph TD
             cert_manager["cert-manager\n+ OVH webhook"]
             traefik["Traefik\n(ingress)"]
             tls_secret["Wildcard TLS cert"]
+            authelia["Authelia\n(OIDC + ForwardAuth)"]
         end
     end
 
@@ -59,11 +61,14 @@ graph TD
     argocd -->|"decrypts secrets"| helm_secrets
     argocd -->|"deploys"| cert_manager
     argocd -->|"deploys"| traefik
+    argocd -->|"deploys"| authelia
     cert_manager -->|"DNS-01 via OVH API"| dns
     acme -->|"verifies TXT"| dns
     acme -->|"issues cert"| cert_manager
     cert_manager -->|"stores"| tls_secret
     traefik -->|"serves TLS"| tls_secret
+    authelia -->|"OIDC SSO"| argocd
+    traefik -->|"ForwardAuth"| authelia
 ```
 
 ## Repository structure
@@ -75,7 +80,9 @@ Homelab/
 ├── terraform/            # OpenTofu — OVH VPS, DNS, k3s provisioning
 ├── argocd/               # ArgoCD Application manifests (App of Apps)
 ├── helm/                 # Helm charts and values per app
-│   ├── argocd-config/    # ArgoCD server config (insecure mode, helm-secrets, IngressRoute)
+│   ├── argocd-config/    # ArgoCD server config (OIDC, RBAC, helm-secrets, IngressRoute)
+│   ├── authelia/         # Authelia config + SOPS-encrypted secrets (OIDC, session, storage)
+│   ├── authelia-users/   # Authelia users database (SOPS-encrypted)
 │   ├── cert-manager/
 │   ├── cert-manager-webhook-ovh/
 │   ├── cluster-issuers/

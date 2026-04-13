@@ -68,3 +68,8 @@ vulnerabilities:
   # Found in: ArgoCD base image (multiple binaries)
   - id: CVE-2026-32282
     statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
+
+misconfigurations:
+  # argocd-cm contains a $secret-name:key reference, not an actual secret
+  - id: KSV-0109
+    statement: The clientSecret value in argocd-cm is a reference ($argocd-oidc-secret:key), not a plaintext secret.

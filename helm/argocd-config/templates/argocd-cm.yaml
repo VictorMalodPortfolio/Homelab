@@ -9,3 +9,17 @@ metadata:
     argocd.argoproj.io/sync-options: Prune=false
 data:
   helm.valuesFileSchemes: secrets, https
+  url: https://{{ .Values.host }}
+  oidc.config: |
+    name: Authelia
+    issuer: https://auth.victor-malod.ovh
+    clientID: argocd
+    clientSecret: $argocd-oidc-secret:oidc.authelia.clientSecret
+    requestedScopes:
+      - openid
+      - groups
+      - email
+      - profile
+    requestedIDTokenClaims:
+      groups:
+        essential: true
