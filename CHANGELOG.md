@@ -48,4 +48,7 @@
 - `feat` Add Authelia MFA with OIDC for ArgoCD ([c56d1a3](https://github.com/VictorMalodPortfolio/Homelab/commit/c56d1a39517726c8b8f1bcbd87cf99213c94cfc8))
 - `chore` Ignore CVE-2026-32280 and CVE-2026-32282 in Trivy ([1ee45ad](https://github.com/VictorMalodPortfolio/Homelab/commit/1ee45ad145151c76f5045eb6c7e752ebdd2528be))
 - `fix` Correct Authelia chart configuration ([f560460](https://github.com/VictorMalodPortfolio/Homelab/commit/f5604603ff332ad63bf8e441134719bcef5feff6))
+- `feat` Configure ArgoCD OIDC authentication with Authelia ([b5e7ec0](https://github.com/VictorMalodPortfolio/Homelab/commit/b5e7ec07e5132129a9fe209bbcb177890fce1070))
+- `chore` Ignore KSV-0109 false positive for argocd-cm OIDC reference ([25fbe68](https://github.com/VictorMalodPortfolio/Homelab/commit/25fbe68a57510ede2671a580247cac1ef39d1c81))
+- `docs` Update README with Authelia MFA architecture ([0d20a96](https://github.com/VictorMalodPortfolio/Homelab/commit/0d20a96a2596deed8269d43c9c7536136228f474))
 

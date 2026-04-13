@@ -63,4 +63,6 @@ configMap:
       filename: /config/notification.txt
 
   identity_providers:
-    # defined in secrets.sops.yaml
+    oidc:
+      enabled: true
+      # clients and secrets defined in secrets.sops.yaml
