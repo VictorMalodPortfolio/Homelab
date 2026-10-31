@@ -40,7 +40,7 @@ resource "null_resource" "k3s_install" {
     type        = "ssh"
     host        = local.vps_ipv4
     user        = "ubuntu"
-    private_key = file("~/.ssh/homelab")
+    private_key = file(var.ssh_private_key_path)
   }
 
   provisioner "remote-exec" {
