@@ -36,6 +36,12 @@ resource "ovh_domain_zone_record" "wildcard" {
 # ── k3s install ────────────────────────────────────────────────────────────────
 
 resource "null_resource" "k3s_install" {
+  # Without a trigger the install runs once and never again: a new VPS keeps the
+  # old "done" entry in the state and gets no k3s and no firewall.
+  triggers = {
+    vps_ipv4 = local.vps_ipv4
+  }
+
   connection {
     type        = "ssh"
     host        = local.vps_ipv4
