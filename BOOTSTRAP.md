@@ -10,7 +10,7 @@ Step-by-step guide to provision the homelab from scratch.
   - An Object Storage bucket (`healthy-charpak`, region GRA)
   - API credentials (Application Key, Application Secret, Consumer Key)
   - Object Storage credentials (Access Key, Secret Key)
-- An SSH key pair at `~/.ssh/homelab` registered on the VPS
+- An SSH key pair at `~/.ssh/vps-admin` registered on the VPS when ordering it (another path: set `ssh_private_key_path` in `terraform.tfvars`)
 - An age key at `~/.config/sops/age/key.txt`
 - Docker Desktop running
 - The DockerTooling image (pulled automatically from GHCR on first run)
@@ -71,7 +71,7 @@ This provisions:
 Find the VPS IP in the OVH console or via `tofu state show data.ovh_vps.main`.
 
 ```bash
-ssh -i ~/.ssh/homelab ubuntu@<VPS_IP> "sudo cat /etc/rancher/k3s/k3s.yaml" \
+ssh -i ~/.ssh/vps-admin ubuntu@<VPS_IP> "sudo cat /etc/rancher/k3s/k3s.yaml" \
     | sed 's/127.0.0.1/<VPS_IP>/g' \
     > ~/.kube/config
 ```
@@ -181,28 +181,7 @@ Once `argocd-config` is synced, restart the ArgoCD server to pick up the insecur
 kubectl rollout restart deployment argocd-server -n argocd
 ```
 
-ArgoCD is then available at `https://argocd.victor-malod.ovh`.
-
----
-
-## 9. Save ArgoCD admin password
-
-Retrieve the initial admin password and save it to sops:
-
-```bash
-kubectl get secret argocd-initial-admin-secret -n argocd \
-  -o jsonpath='{.data.password}' | base64 -d
-```
-
-```bash
-sops workspace/terraform/secrets.sops.yaml
-```
-
-Add:
-
-```yaml
-argocd_admin_password: "..."
-```
+ArgoCD is then available at `https://argocd.victor-malod.ovh`. Log in through Authelia: `argocd-config` disables the built-in `admin` account, so its initial password is not needed and is not kept in sops.
 
 ---
 
