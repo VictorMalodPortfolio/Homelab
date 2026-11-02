@@ -181,28 +181,7 @@ Once `argocd-config` is synced, restart the ArgoCD server to pick up the insecur
 kubectl rollout restart deployment argocd-server -n argocd
 ```
 
-ArgoCD is then available at `https://argocd.victor-malod.ovh`.
-
----
-
-## 9. Save ArgoCD admin password
-
-Retrieve the initial admin password and save it to sops:
-
-```bash
-kubectl get secret argocd-initial-admin-secret -n argocd \
-  -o jsonpath='{.data.password}' | base64 -d
-```
-
-```bash
-sops workspace/terraform/secrets.sops.yaml
-```
-
-Add:
-
-```yaml
-argocd_admin_password: "..."
-```
+ArgoCD is then available at `https://argocd.victor-malod.ovh`. Log in through Authelia: `argocd-config` disables the built-in `admin` account, so its initial password is not needed and is not kept in sops.
 
 ---
 
