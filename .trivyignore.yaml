@@ -1,73 +1,25 @@
+# Ignore a finding only with a statement saying why it doesn't apply.
+#
+# HIGH vulnerabilities in the upstream binaries of the repo-server image (ArgoCD's
+# helm, kustomize and git-lfs, plus sops and age) don't need an entry: the CI gate
+# only blocks on fixable OS packages and on CRITICAL, and reports the rest to the
+# Security tab (see the trivy-image job in .github/workflows/ci.yml).
+
 vulnerabilities:
-  # All CVEs below are in the ArgoCD v3.3.6 base image (compiled-in Go dependencies).
-  # No upstream fix is available via a newer ArgoCD release.
-  # These will be resolved when ArgoCD ships a new release with updated Go modules.
-
-  # Go stdlib: Incorrect certificate validation in crypto/tls
-  # Found in: ArgoCD base image (multiple binaries)
+  # Go crypto/tls: a resumed TLS session can skip a CA check when the program
+  # mutates its tls.Config between handshakes. Rated CRITICAL, so it trips the gate.
+  # Found in the git-lfs and kustomize binaries ArgoCD v3.5.6 ships, built with
+  # Go 1.25.3 and 1.24.0.
   - id: CVE-2025-68121
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # gRPC-Go: Authorization bypass due to improper HTTP/2 path validation
-  # Affects server-side gRPC authorization middleware.
-  # Found in: ArgoCD base image
-  - id: CVE-2026-33186
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: Memory exhaustion in net/url query parameter parsing
-  # Found in: ArgoCD base image (multiple binaries)
-  - id: CVE-2025-61726
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # go-jose/v4: JWT library vulnerability
-  # Found in: ArgoCD base image
-  - id: CVE-2026-34986
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: ExtKeyUsageAny disables policy validation in crypto/x509
-  # Found in: ArgoCD base image
-  - id: CVE-2025-22874
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: Excessive CPU consumption when building zip index
-  # Found in: ArgoCD base image (multiple binaries)
-  - id: CVE-2025-61728
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # OpenTelemetry Go SDK: BSD kenv command not using absolute path enables PATH hijacking
-  # Found in: ArgoCD base image
-  - id: CVE-2026-39883
-    statement: Upstream ArgoCD issue — not exploitable in a Linux container (BSD-only attack vector).
-
-  # Go stdlib: Postgres Scan race condition in database/sql
-  # Found in: ArgoCD base image
-  - id: CVE-2025-47907
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: Unbounded allocation when parsing GNU sparse tar maps
-  # Found in: ArgoCD base image
-  - id: CVE-2025-58183
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: DoS via crafted certificate chain in crypto/x509
-  # Found in: ArgoCD base image
-  - id: CVE-2025-61729
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: Incorrect parsing of IPv6 host literals in net/url
-  # Found in: ArgoCD base image
-  - id: CVE-2026-25679
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: TLS chain building DoS
-  # Found in: ArgoCD base image (multiple binaries)
-  - id: CVE-2026-32280
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
-
-  # Go stdlib: Root.Chmod can follow symlinks out of the root
-  # Found in: ArgoCD base image (multiple binaries)
-  - id: CVE-2026-32282
-    statement: Upstream ArgoCD issue — no fixed ArgoCD release available yet.
+    paths:
+      - usr/local/bin/git-lfs
+      - usr/local/bin/kustomize
+    expired_at: 2027-02-01
+    statement: >-
+      The Homelab uses neither Git LFS nor kustomize: every app is a Helm chart.
+      The flaw also needs a program that mutates tls.Config between handshakes,
+      which these one-shot CLI runs don't. Drop this entry once ArgoCD ships both
+      rebuilt with Go 1.25.7 or later.
 
 misconfigurations:
   # argocd-cm contains a $secret-name:key reference, not an actual secret
