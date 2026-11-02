@@ -90,11 +90,13 @@ Inside the tooling container:
 
 ```bash
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v3.5.6/manifests/install.yaml
 kubectl get pods -n argocd -w
 ```
 
 Wait until all 7 pods are `Running`.
+
+> The version is pinned on purpose: it must match the `FROM` of `docker/argocd-repo-server/Dockerfile`, because step 5a swaps the repo-server for that image. Bump both together.
 
 ### 5a. Enable helm-secrets on the repo-server
 
