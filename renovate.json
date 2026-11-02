@@ -1,5 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "dependencyDashboardApproval": false
+  "extends": ["config:recommended", "customManagers:dockerfileVersions"],
+  "argocd": {
+    "managerFilePatterns": ["/^argocd/.+\\.yaml$/", "/^bootstrap/.+\\.yaml$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "ArgoCD install manifest in BOOTSTRAP.md: must match the repo-server image's base",
+      "managerFilePatterns": ["/^BOOTSTRAP\\.md$/"],
+      "matchStrings": [
+        "raw\\.githubusercontent\\.com/argoproj/argo-cd/(?<currentValue>v[0-9.]+)/manifests/install\\.yaml"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "quay.io/argoproj/argocd"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Move the repo-server image and the BOOTSTRAP manifest in the same PR",
+      "matchDepNames": ["quay.io/argoproj/argocd"],
+      "groupName": "ArgoCD"
+    }
+  ]
 }
