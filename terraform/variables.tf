@@ -21,6 +21,12 @@ variable "vps_name" {
   type        = string
 }
 
+variable "ssh_private_key_path" {
+  description = "Private key OpenTofu uses to provision the VPS over SSH (the one registered on the VPS when ordering it)"
+  type        = string
+  default     = "~/.ssh/vps-admin"
+}
+
 variable "domain" {
   description = "Root domain managed by OVH DNS"
   type        = string
