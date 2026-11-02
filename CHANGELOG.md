@@ -52,4 +52,6 @@
 - `chore` Ignore KSV-0109 false positive for argocd-cm OIDC reference ([25fbe68](https://github.com/VictorMalodPortfolio/Homelab/commit/25fbe68a57510ede2671a580247cac1ef39d1c81))
 - `docs` Update README with Authelia MFA architecture ([0d20a96](https://github.com/VictorMalodPortfolio/Homelab/commit/0d20a96a2596deed8269d43c9c7536136228f474))
 - `feat` Add CoreDNS rewrite, fix Authelia OIDC config, disable ArgoCD admin ([4423fef](https://github.com/VictorMalodPortfolio/Homelab/commit/4423fefbc6f33115455261109d5fe888968509dc))
+- `build` Move the repo-server image to ArgoCD 3.5.6 and Helm 4 ([0590f91](https://github.com/VictorMalodPortfolio/Homelab/commit/0590f91295fc36ed2d374ca3e5d489b67c68d442))
+- `ci` Gate the repo-server image on fixable OS and critical CVEs ([9b1e2c8](https://github.com/VictorMalodPortfolio/Homelab/commit/9b1e2c8920603946338d2e1cd955cc2d92e826af))
 
