@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://charts.authelia.com
       chart: authelia
-      targetRevision: 0.10.57 # app version 4.39.19
+      targetRevision: 0.10.57
       helm:
         valueFiles:
           - $values/helm/authelia/values.yaml
