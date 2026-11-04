@@ -1,5 +1,5 @@
 # Keep in sync with the ArgoCD install manifest version in BOOTSTRAP.md (step 5).
-FROM quay.io/argoproj/argocd:v3.5.6
+FROM quay.io/argoproj/argocd:v3.6.1
 
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets extractVersion=^v(?<version>.+)$
 ARG HELM_SECRETS_VERSION=4.7.10
