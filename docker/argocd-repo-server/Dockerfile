@@ -2,7 +2,7 @@
 FROM quay.io/argoproj/argocd:v3.5.6
 
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets extractVersion=^v(?<version>.+)$
-ARG HELM_SECRETS_VERSION=4.7.10
+ARG HELM_SECRETS_VERSION=4.7.11
 # renovate: datasource=github-releases depName=getsops/sops extractVersion=^v(?<version>.+)$
 ARG SOPS_VERSION=3.13.3
 # renovate: datasource=github-releases depName=FiloSottile/age extractVersion=^v(?<version>.+)$
